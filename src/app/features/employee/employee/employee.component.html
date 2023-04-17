@@ -1,0 +1,22 @@
+<p>employee works!</p>
+
+<div fxLayout="row" fxLayoutAlign="center" class="mt-5">
+  <div fxFlex="60%" class="border-blog">
+
+    <!-- <app-employee-list [employees]="employees"></app-employee-list> -->
+
+    <div *ngIf="loading" fxLayoutAlign="center">
+      <app-loader></app-loader>
+    </div>
+    <div *ngIf="errorMessage">
+      <p class="form-control text-danger"><span [innerHTML]="errorMessage.split('\n').join('<br>')"></span></p>
+    </div>
+
+    <ng-template *ngIf="!loading">
+    </ng-template>
+    <app-employee-table [employees]="employees" [displayedColumns]="displayedColumns"></app-employee-table>
+
+  </div>
+</div>
+
+

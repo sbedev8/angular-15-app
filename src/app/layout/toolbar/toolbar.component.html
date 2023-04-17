@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+  <div fxShow="true">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <a routerLinkActive="active" routerLink="/" class="ms-3 mx-2">
+    <mat-icon fxLayoutAlign="center center" class="text-white">home</mat-icon>
+  </a>
+
+  <button mat-button [matMenuTriggerFor]="menu" (mouseenter)="showMenu()"  #menuTrigger="matMenuTrigger" >
+    <div class="d-flex align-items-center">
+      <a mat-button  class="nav-link" routerLinkActive="active" routerLink="/coding"> coding </a>
+      <span class="d-flex align-items-center"><mat-icon>arrow_drop_down</mat-icon></span>
+    </div>
+  </button>
+
+
+  <mat-menu #menu="matMenu" >
+    <div class="menu-with-arrow">
+
+      <mat-nav-list (mouseleave)="hideMenu()" >
+        <span class="arrow-up"></span>
+        <a mat-menu-item routerLinkActive="active" routerLink="/coding/counter"> Counter</a>
+        <a mat-menu-item routerLinkActive="active" routerLink="/coding/voter"> Voter</a>
+      </mat-nav-list>
+    </div>
+    </mat-menu>
+  <!-- <mat-menu #menu="matMenu" >
+    <button mat-menu-item (mouseleave)="hideMenu()"><a mat-button class="nav-link" routerLinkActive="active" routerLink="/coding/counter"> Counter</a></button>
+    <button mat-menu-item><a mat-button class="nav-link" routerLinkActive="active" routerLink="/coding/voter"> Voter</a></button>
+  </mat-menu> -->
+
+
+  <a mat-button class="nav-link" routerLinkActive="active" routerLink="/blog"> blog </a>
+  <a mat-button class="nav-link" routerLinkActive="active" routerLink="/employee"> employee </a>
+
+</mat-toolbar>

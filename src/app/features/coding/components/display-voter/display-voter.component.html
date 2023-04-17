@@ -1,0 +1,5 @@
+<p>display-voter works!</p>
+
+<app-voter [question]="question" [yesAnswer]="yesAnswer" [noAnswer]="noAnswer" (output)="onVote($event)"></app-voter>
+
+<div id="lastVote" #lastVote></div>
