@@ -25,6 +25,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/employee/employee.module').then((m) => m.EmployeeModule),
       },
+      {
+        path: 'file',
+        loadChildren: () =>
+          import('./features/file/file.module').then((m) => m.FileModule),
+      },
     ],
   },
 ];

@@ -12,11 +12,12 @@
       <p class="form-control text-danger"><span [innerHTML]="errorMessage.split('\n').join('<br>')"></span></p>
     </div>
 
-    <ng-template *ngIf="!loading">
-    </ng-template>
+    <!-- <ng-template *ngIf="!loading">
+    </ng-template> -->
     <app-employee-table [employees]="employees" [displayedColumns]="displayedColumns"></app-employee-table>
 
   </div>
+
 </div>
 
 

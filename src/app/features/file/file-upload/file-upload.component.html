@@ -1,0 +1,58 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
+  <div class="content" fxLayout="column" fxLayoutGap="15px">
+
+    <div (click)="openFile()" (drop)="dropFiles($event); over = false" (dragover)="$event.preventDefault()"
+      (dragenter)="over = true" (dragleave)="over = false" [class.over]="over" class="upload" fxLayout="row"
+      fxLayoutAlign="center center">
+
+      <input (change)="onFilesSelected($event)" multiple #fileInput type="file" fxHide="true" />
+      <span class="mt-3">
+        <p>Glissez et déposez vos fichiers ici ou cliquez pour sélectionner les fichiers</p>
+      </span>
+
+      <mat-icon>attach_file</mat-icon>
+
+    </div>
+
+    <!--  mat-spinner  -->
+
+    <div *ngIf="!error && progress$ | async; let progress">
+      <mat-progress-bar mode="determinate" [value]="progress" diameter="60"></mat-progress-bar>
+      <span>{{ progress$ | async }}%</span>
+    </div>
+
+    <div fxLayout="column" fxLayoutGap="5px">
+      <div class="files" *ngFor="let file of files ; let index =index" fxLayout="row" fxLayoutAlign="center center">
+        <span>{{ file.name }}</span>
+        <span fxFlex="auto"></span>
+
+        <!-- <div class="spinner-containner"  fxLayout="row" fxLayoutAlign="center center">
+          <mat-spinner class="spinner" mode="determinate" diameter="60" [value]="progress" ></mat-spinner>
+          <span class="text-progress font-weight-bolder">{{progress}}%</span>
+          <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+        </div> -->
+
+        <!-- <div *ngIf="!error && progress$ | async; let progress">
+          <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+          <span>{{ progress$ | async }}%</span>
+        </div> -->
+
+        <mat-icon class="clickable" (click)="remove(index)">clear</mat-icon>
+
+      </div>
+    </div>
+
+    <div *ngIf="error">
+      <p class="form-control text-danger">{{error | json}}</p>
+    </div>
+    <div *ngIf="succes">
+      <p class="form-control text-bg-info">{{succes}}</p>
+    </div>
+
+
+  </div>
+</div>
+<div class="mt-2 d-flex justify-content-center">
+  <button  mat-raised-button color="accent" [disabled]="!files.length" (click)="uploadAll()">Envoyer les fichiers</button>
+</div>
+
