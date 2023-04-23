@@ -26,7 +26,14 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        [appRowHighlight]="row"
+        [hoveredRow]="hoveredRow"
+        [selectedRow]="selectedRow"
+        [hoverBackgroundColor]="'#ccb0b9'"
+        (rowSelected)="onRowSelected($event)">
+    </tr>
+
   </table>
   <mat-paginator #paginator [pageSizeOptions]="[3, 5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
@@ -34,3 +41,27 @@
 <!-- <ng-template #noEmployees>
   <p>Aucun employé trouvé.</p>
 </ng-template> -->
+
+<!--
+[ngStyle]="hoveredRow === row ? {'background-color': '#dd5784'} : {}"
+[class.row-hover]="hoveredRow === row"
+(mouseenter)="onMouseEnter(row)"
+[ngClass]="{'row-hover': hoveredRow === row}"
+(mouseleave)="onMouseOut(row)"
+[ngClass]="hoveredRow === row ? 'row-hover' : 'autreclass'"
+
+
+  (mouseenter)="row.rowhover = true"
+  (mouseleave)="row.rowhover = false"
+  [ngClass]="{'rowhover': row.rowhover}"
+
+
+-->
+<!-- ## RUN
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    class="pointer"
+    (click)="onRowClicked(row)"
+    (mouseenter)="onMouseEnter(row)"
+    (mouseleave)="onMouseLeave()"
+    [ngClass]="{'hovered': hoveredRow === row, 'selected': selectedRow === row}">
+-->

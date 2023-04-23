@@ -1,9 +1,15 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center center">
   <div class="content" fxLayout="column" fxLayoutGap="15px">
 
-    <div (click)="openFile()" (drop)="dropFiles($event); over = false" (dragover)="$event.preventDefault()"
-      (dragenter)="over = true" (dragleave)="over = false" [class.over]="over" class="upload" fxLayout="row"
-      fxLayoutAlign="center center">
+    <div (click)="openFile()"
+    (drop)="dropFiles($event); over = false"
+        (dragover)="$event.preventDefault()"
+        (dragenter)="over = true"
+        (dragleave)="over = false"
+        [class.over]="over"
+        class="upload"
+        fxLayout="row"
+        fxLayoutAlign="center center">
 
       <input (change)="onFilesSelected($event)" multiple #fileInput type="file" fxHide="true" />
       <span class="mt-3">

@@ -4,6 +4,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeTableComponent } from './employee-table/employee-table.component';
+import { RowHighlightDirective } from './directive/row-highlight.directive';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
   declarations: [
     EmployeeComponent,
     EmployeeListComponent,
-    EmployeeTableComponent
+    EmployeeTableComponent,
+    RowHighlightDirective
   ],
   imports: [
     SharedModule,
