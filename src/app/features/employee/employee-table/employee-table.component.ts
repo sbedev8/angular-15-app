@@ -5,8 +5,10 @@ import {
   Input,
   OnChanges,
   OnInit,
+  QueryList,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  ViewChildren
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -18,10 +20,54 @@ import { Employee } from 'src/app/core/models/Employee';
   templateUrl: './employee-table.component.html',
   styleUrls: ['./employee-table.component.scss'],
 })
-export class EmployeeTableComponent implements OnInit, OnChanges{
+export class EmployeeTableComponent implements OnInit, OnChanges, OnChanges {
 
   @Input() displayedColumns: string[];
   @Input() employees: Employee[];
+
+  // tables : any;
+
+  // ngAfterViewInit(): void {
+  //   this.tables = this.el.nativeElement.querySelectorAll('table');
+  //   this.alignColumns();
+
+  //   this.paginator.page.subscribe(() => {
+  //     this.alignColumns();
+  //   });
+
+  // //  console.log(tables[0].querySelectorAll('th'))
+
+  // }
+
+
+  // alignColumns(): void {
+  //   if (this.tables && this.tables.length === 2) {
+  //     setTimeout(() => {
+
+  //       const headerTable = this.tables.item(0);
+  //       const bodyTable = this.tables.item(1);
+
+  //       const headerCells = headerTable.querySelectorAll('th');
+  //       const bodyRows = bodyTable.querySelectorAll('tr');
+
+  //       console.log(bodyRows)
+
+  //       bodyRows.forEach((bcell, index) => {
+
+  //           const width = bcell.getBoundingClientRect().width;
+
+  //             headerCells[index].style.width = `${width}px`;
+
+  //         });
+
+  //     }, 0 );
+  //   }
+  // }
+
+  constructor(private el: ElementRef<HTMLElement>,){
+
+  }
+
 
   selectedRow: any;
   hoveredRow: any;
@@ -48,6 +94,7 @@ export class EmployeeTableComponent implements OnInit, OnChanges{
         this.dataSource.sort = this.sort;
       }
     }
+
   }
 
 

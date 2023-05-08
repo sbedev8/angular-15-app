@@ -13,3 +13,60 @@
 .rowhover{
   background-color: aquamarine;
 }
+
+
+
+.custom-table {
+  width: 100%;
+  table-layout: fixed;
+  overflow-x: auto;
+}
+
+.cell-tiers{
+  width: 15%;
+}
+
+.cell-id{
+  width: 10%;
+}
+.cell-firstName{
+  width: 20%;
+}
+.cell-lastName{
+  width: 20%;
+}
+.cell-email{
+  width: 30%;
+}
+
+.mat-header-cell,
+.mat-cell {
+  word-wrap: normal;
+  overflow: scroll;
+  text-overflow: ellipsis;
+}
+
+// .header-id,
+// .cell-id,
+// .header-firstName,
+// .cell-firstName,
+// .header-lastName,
+// .cell-lastName,
+// .header-email,
+// .cell-email {
+//   text-align: left;
+//   width: 25%;
+// }
+
+// @media (min-width: 576px) {
+//   .header-id,
+//   .cell-id,
+//   .header-firstName,
+//   .cell-firstName,
+//   .header-lastName,
+//   .cell-lastName,
+//   .header-email,
+//   .cell-email {
+//     width: 25%;
+//   }
+// }

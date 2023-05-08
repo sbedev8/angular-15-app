@@ -1,7 +1,6 @@
-
 <!-- <div *ngIf="employees && employees.length > 0; else noEmployees"> -->
 
-  <div>
+<!-- <div>
 
   <mat-form-field>
     <input matInput type="text" (keyup)="applyFilter(filterValue.value)" #filterValue placeholder="filter">
@@ -26,17 +25,13 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-        [appRowHighlight]="row"
-        [hoveredRow]="hoveredRow"
-        [selectedRow]="selectedRow"
-        [hoverBackgroundColor]="'#ccb0b9'"
-        (rowSelected)="onRowSelected($event)">
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [appRowHighlight]="row" [hoveredRow]="hoveredRow"
+      [selectedRow]="selectedRow" [hoverBackgroundColor]="'#ccb0b9'" (rowSelected)="onRowSelected($event)">
     </tr>
 
   </table>
-  <mat-paginator #paginator [pageSizeOptions]="[3, 5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
+  <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div> -->
 
 <!-- <ng-template #noEmployees>
   <p>Aucun employé trouvé.</p>
@@ -65,3 +60,165 @@
     (mouseleave)="onMouseLeave()"
     [ngClass]="{'hovered': hoveredRow === row, 'selected': selectedRow === row}">
 -->
+
+
+<div class="d-flex flex-column">
+  <div class="d-flex">
+    <div class="col-2" style="background-color: lightblue;">
+      20% width div
+    </div>
+    <div class="col-10" style="background-color: lightgreen;">
+      80% width div
+    </div>
+  </div>
+
+
+
+    <table mat-table [dataSource]="dataSource" matSort class="custom-table">
+      <ng-container matColumnDef="tiers">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-id"> Tiers</th>
+      </ng-container>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-id"> id</th>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-firstName"> firstName</th>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-lastName"> lastName</th>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="cell-email"> email </th>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    </table>
+
+
+    <mat-accordion>
+
+      <mat-expansion-panel expanded="true" >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Tiers principal
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <table mat-table [dataSource]="dataSource" matSort  class="custom-table">
+
+          <ng-container matColumnDef="tiers">
+            <td mat-cell *matCellDef="let row" class="cell-tiers">  </td>
+          </ng-container>
+
+          <ng-container matColumnDef="id">
+            <td mat-cell *matCellDef="let row" class="cell-id"> {{row.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="firstName">
+            <td mat-cell *matCellDef="let row" class="cell-firstName"> {{row.firstName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="lastName">
+            <td mat-cell *matCellDef="let row" class="cell-lastName"> {{row.lastName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <td mat-cell *matCellDef="let row" class="cell-email"> {{row.email}} </td>
+          </ng-container>
+
+
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [appRowHighlight]="row" [hoveredRow]="hoveredRow"
+            [selectedRow]="selectedRow" [hoverBackgroundColor]="'#ccb0b9'" (rowSelected)="onRowSelected($event)" >
+          </tr>
+
+        </table>
+        <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+  </div>
+
+
+
+
+<!--
+
+<div class="accordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+      aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+
+        <table mat-table [dataSource]="dataSource" matSort #sort>
+
+          <ng-container matColumnDef="id">
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="firstName">
+            <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="lastName">
+            <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+          </ng-container>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [appRowHighlight]="row" [hoveredRow]="hoveredRow"
+            [selectedRow]="selectedRow" [hoverBackgroundColor]="'#ccb0b9'" (rowSelected)="onRowSelected($event)">
+          </tr>
+
+        </table>
+        <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+      aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+
+        <table mat-table [dataSource]="dataSource" matSort #sort>
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> id</th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> firstName</th>
+            <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> lastName</th>
+            <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
+            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [appRowHighlight]="row" [hoveredRow]="hoveredRow"
+            [selectedRow]="selectedRow" [hoverBackgroundColor]="'#ccb0b9'" (rowSelected)="onRowSelected($event)">
+          </tr>
+
+        </table>
+        <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+      </div>
+    </div>
+  </div>
+</div> -->

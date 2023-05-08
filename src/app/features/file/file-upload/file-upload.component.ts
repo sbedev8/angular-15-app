@@ -75,9 +75,8 @@ export class FileUploadComponent {
       .uploadMultipleWithProgressBar(this.files)
 
       .subscribe({
-
-        next: file => {
-          console.log(file)
+        next: (file) => {
+          console.log(file);
         },
         error: (err) => {
           this.error = err.error;
