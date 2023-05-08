@@ -27,7 +27,6 @@ export class EmployeeComponent implements OnInit {
     return this.http.get<Employee[]>('assets/data.json').subscribe({
       next:  data => {
         this.employees = data;
-        console.log(this.employees)
         this.loading = false;
       },
 
