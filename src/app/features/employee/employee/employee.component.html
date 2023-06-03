@@ -5,19 +5,20 @@
 
     <!-- <app-employee-list [employees]="employees"></app-employee-list> -->
 
-    <div *ngIf="loading" fxLayoutAlign="center">
+    <!-- <div *ngIf="loading" fxLayoutAlign="center">
       <app-loader></app-loader>
-    </div>
+    </div> -->
     <div *ngIf="errorMessage">
       <p class="form-control text-danger"><span [innerHTML]="errorMessage.split('\n').join('<br>')"></span></p>
     </div>
 
-    <!-- <ng-template *ngIf="!loading">
-    </ng-template> -->
-    <app-employee-table [employees]="employees" [displayedColumns]="displayedColumns"></app-employee-table>
+
+    <app-employee-table  [displayedColumns]="displayedColumns"></app-employee-table>
 
   </div>
 
 </div>
 
 
+   <!-- <ng-template *ngIf="!loading">
+    </ng-template> -->

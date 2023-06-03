@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./employee.component.scss'],
 })
 export class EmployeeComponent implements OnInit {
+
   loading = true;
   errorMessage: string | null = null;
 
@@ -17,23 +18,48 @@ export class EmployeeComponent implements OnInit {
 
   displayedColumns: string[] = ['tiers', 'id', 'firstName', 'lastName', 'email'];
 
-  constructor(private employeeService: EmployeeService, private http: HttpClient) {}
+
 
   ngOnInit(): void {
-    this.getEmployees();
+    throw new Error('Method not implemented.');
   }
 
-  getEmployees() {
-    return this.http.get<Employee[]>('assets/data.json').subscribe({
-      next:  data => {
-        this.employees = data;
-        this.loading = false;
-      },
 
 
 
-    });
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // constructor(private employeeService: EmployeeService, private http: HttpClient) {}
+
+  // ngOnInit(): void {
+  //   this.getEmployees();
+  // }
+
+  // getEmployees() {
+  //   return this.http.get<Employee[]>('assets/data.json').subscribe({
+  //     next:  data => {
+  //       this.employees = data;
+  //       this.loading = false;
+  //     },
+
+
+
+  //   });
+  // }
 
   // getEmployees(): void {
   //   this.employeeService.getAllEmployees().subscribe({

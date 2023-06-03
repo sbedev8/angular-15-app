@@ -3,66 +3,69 @@ import {
   Component,
   ElementRef,
   Input,
-  OnChanges,
   OnInit,
   QueryList,
-  SimpleChanges,
   ViewChild,
   ViewChildren
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatRow, MatTableDataSource } from '@angular/material/table';
-import { Employee } from 'src/app/core/models/Employee';
+import { MatTableDataSource } from '@angular/material/table';
+import { Section } from 'src/app/core/models/section.model';
+import { Employee } from './../../../core/models/Employee';
 
 @Component({
   selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
   styleUrls: ['./employee-table.component.scss'],
 })
-export class EmployeeTableComponent implements OnInit, OnChanges, OnChanges {
+
+export class EmployeeTableComponent implements OnInit, AfterViewInit {
 
   @Input() displayedColumns: string[];
   @Input() employees: Employee[];
 
-  // tables : any;
+   employeesSales = [
+    { id: 1, firstName: 'John', lastName: 'Doe', email: 'jdoe@example.com' },
+    { id: 2, firstName: 'Jane', lastName: 'Smith', email: 'jsmith@example.com' },
+    { id: 3, firstName: 'Bob', lastName: 'Johnson', email: 'bjohnson@example.com' },
+    { id: 1, firstName: 'John', lastName: 'Doe', email: 'jdoe@example.com' },
+    { id: 1, firstName: 'John', lastName: 'Doe', email: 'jdoe@example.com' },
+    { id: 2, firstName: 'Jane', lastName: 'Smith', email: 'jsmith@example.com' },
+    { id: 3, firstName: 'Bob', lastName: 'Johnson', email: 'bjohnson@example.com' },
+    { id: 1, firstName: 'John', lastName: 'Doe', email: 'jdoe@example.com' },
+    { id: 1, firstName: 'John', lastName: 'Doe', email: 'jdoe@example.com' },
+    { id: 2, firstName: 'Jane', lastName: 'Smith', email: 'jsmith@example.com' },
+    { id: 3, firstName: 'Bob', lastName: 'Johnson', email: 'bjohnson@example.com' },
+    { id: 1, firstName: 'John', lastName: 'Doe', email: 'jdoe@example.com' }
+  ];
 
-  // ngAfterViewInit(): void {
-  //   this.tables = this.el.nativeElement.querySelectorAll('table');
-  //   this.alignColumns();
+   employeesMarketing = [
+    { id: 4, firstName: 'Alice', lastName: 'Brown', email: 'abrown@example.com' },
+    { id: 5, firstName: 'Charlie', lastName: 'Davis', email: 'cdavis@example.com' },
+    { id: 6, firstName: 'Eve', lastName: 'Miller', email: 'emiller@example.com' },
+  ];
 
-  //   this.paginator.page.subscribe(() => {
-  //     this.alignColumns();
-  //   });
+   employeesDevelopment = [
+    { id: 7, firstName: 'Frank', lastName: 'Wilson', email: 'fwilson@example.com' },
+    { id: 8, firstName: 'Grace', lastName: 'Taylor', email: 'gtaylor@example.com' },
+    { id: 9, firstName: 'zzz', lastName: 'Moore', email: 'hmoore@example.com' },
+  ];
 
-  // //  console.log(tables[0].querySelectorAll('th'))
-
-  // }
-
-
-  // alignColumns(): void {
-  //   if (this.tables && this.tables.length === 2) {
-  //     setTimeout(() => {
-
-  //       const headerTable = this.tables.item(0);
-  //       const bodyTable = this.tables.item(1);
-
-  //       const headerCells = headerTable.querySelectorAll('th');
-  //       const bodyRows = bodyTable.querySelectorAll('tr');
-
-  //       console.log(bodyRows)
-
-  //       bodyRows.forEach((bcell, index) => {
-
-  //           const width = bcell.getBoundingClientRect().width;
-
-  //             headerCells[index].style.width = `${width}px`;
-
-  //         });
-
-  //     }, 0 );
-  //   }
-  // }
+   sections: Section[] = [
+    {
+      name: 'Sales',
+      employees: new MatTableDataSource<Employee>(this.employeesSales),
+    },
+    {
+      name: 'Marketing',
+      employees: new MatTableDataSource<Employee>(this.employeesMarketing),
+    },
+    {
+      name: 'Development',
+      employees: new MatTableDataSource<Employee>(this.employeesDevelopment),
+    },
+  ];
 
   constructor(private el: ElementRef<HTMLElement>,){
 
@@ -75,33 +78,37 @@ export class EmployeeTableComponent implements OnInit, OnChanges, OnChanges {
   dataSource: MatTableDataSource<Employee>;
 
   // @ViewChild('paginator') paginator: MatPaginator;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.employees);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+    // this.dataSource = new MatTableDataSource(this.employees);
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['employees'] && changes['employees'].currentValue) {
-      this.dataSource = new MatTableDataSource(this.employees);
-      if (this.paginator) {
-        this.dataSource.paginator = this.paginator;
-      }
-      if (this.sort) {
-        this.dataSource.sort = this.sort;
-      }
-    }
 
   }
 
+  ngAfterViewInit(): void {
+    this.paginator.toArray().forEach((paginator, index) => {
+      this.sections[index].employees.paginator = paginator;
+    });
+    this.sections.forEach(section => {
+      section.employees.sort = this.sort;
+    });
+  }
 
-  applyFilter(filterValue: string) {
+
+  applyFilter_(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+  applyFilter(filterValue: string) {
+    this.sections.forEach(section => {
+      section.employees.filter = filterValue.trim().toLowerCase();
+    });
   }
 
 
