@@ -18,10 +18,8 @@ export class EmployeeComponent implements OnInit {
 
   displayedColumns: string[] = ['tiers', 'id', 'firstName', 'lastName', 'email'];
 
-
-
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
 
 

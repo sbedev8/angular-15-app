@@ -6,11 +6,11 @@
   cursor: pointer;
 }
 
-.hovered{
+.hovered {
   background-color: #ccb0b9;
 }
 
-.rowhover{
+.rowhover {
   background-color: aquamarine;
 }
 
@@ -20,20 +20,20 @@
   overflow-x: auto;
 }
 
-.cell-tiers{
+.cell-tiers {
   width: 15%;
 }
 
-.cell-id{
+.cell-id {
   width: 10%;
 }
-.cell-firstName{
+.cell-firstName {
   width: 20%;
 }
-.cell-lastName{
+.cell-lastName {
   width: 20%;
 }
-.cell-email{
+.cell-email {
   width: 30%;
 }
 
@@ -42,6 +42,26 @@
   word-wrap: normal;
   overflow: scroll;
   text-overflow: ellipsis;
+}
+
+// .mat-expansion-panel-header.mat-expanded {
+//   height: 20px;
+// }
+
+.my-accordion {
+  .mat-expansion-panel-header {
+    background-color: #d8e7f3;
+    padding: 0 15px;
+
+    &.mat-expanded {
+      height: 40px;
+    }
+
+  }
+
+  .mat-expansion-panel {
+    margin: 0 ;
+  }
 }
 
 // .header-id,
