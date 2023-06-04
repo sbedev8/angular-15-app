@@ -42,7 +42,7 @@
 
     <mat-accordion multi class="my-accordion">
 
-      <mat-expansion-panel expanded="true" *ngFor="let elem of sections;let i = index" >
+      <mat-expansion-panel expanded="true" *ngFor="let elem of sections;" >
         <mat-expansion-panel-header >
           <mat-panel-title>
             {{elem.name}}
@@ -69,8 +69,11 @@
           </ng-container>
 
 
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [appRowHighlight]="row"
-            [selectedRow]="selectedRow"  (rowSelected)="onRowSelected($event)" >
+          <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"
+              [appRowHighlight]="row"
+              [selectedRow]="selectedRow"
+              [indexRow]="i"
+              (rowSelected)="onRowSelected($event)" >
           </tr>
 
         </table>

@@ -5,9 +5,11 @@ import { MatRow } from '@angular/material/table';
   selector: '[appRowHighlight]'
 })
 export class RowHighlightDirective {
-  @Input() hoverBackgroundColor: string = '#eeb3c6';
+  // @Input() hoverBackgroundColor: string = '#eeb3c6';
+
   @Input() selectedRow: MatRow;
   @Output() rowSelected = new EventEmitter<any>();
+  @Input() indexRow: number;
 
   private hoveredRow: MatRow;
   private row: MatRow;
@@ -30,6 +32,10 @@ export class RowHighlightDirective {
 
   @HostBinding('class.selected') get isSelected() {
     return this.selectedRow === this.row;
+  }
+
+  @HostBinding('class.row-odd-color') get isOddRow() {
+    return this.indexRow % 2 !== 0;
   }
 
 

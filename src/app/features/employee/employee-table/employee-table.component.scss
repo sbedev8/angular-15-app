@@ -14,9 +14,17 @@
   width: 100%;
   table-layout: fixed;
   overflow-x: auto;
-
   .rowhover {
-    background-color: rgb(245, 211, 189);
+    background-color: #f5d3bd;
+  }
+  .row-odd-color {
+    background-color: #f2f2f2;
+    &.rowhover{
+      background-color: #f5d3bd;
+    }
+    &.selected {
+      background-color: #eeb3c6;
+    }
   }
 }
 
