@@ -10,14 +10,14 @@
   background-color: #ccb0b9;
 }
 
-.rowhover {
-  background-color: aquamarine;
-}
-
 .custom-table {
   width: 100%;
   table-layout: fixed;
   overflow-x: auto;
+
+  .rowhover {
+    background-color: rgb(245, 211, 189);
+  }
 }
 
 .cell-tiers {

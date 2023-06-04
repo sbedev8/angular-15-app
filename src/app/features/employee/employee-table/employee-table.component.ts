@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatRow, MatTableDataSource } from '@angular/material/table';
 import { Section } from 'src/app/core/models/section.model';
 import { Employee } from './../../../core/models/Employee';
 
@@ -147,8 +147,7 @@ export class EmployeeTableComponent implements OnInit, AfterViewInit {
     console.log(this.sections);
   }
 
-  selectedRow: any;
-  hoveredRow: any;
+  selectedRow: MatRow;
 
   dataSource: MatTableDataSource<Employee>;
 

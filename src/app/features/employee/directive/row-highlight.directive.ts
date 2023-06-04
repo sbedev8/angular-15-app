@@ -5,11 +5,11 @@ import { MatRow } from '@angular/material/table';
   selector: '[appRowHighlight]'
 })
 export class RowHighlightDirective {
-  @Input() hoveredRow: MatRow;
-  @Input() selectedRow: MatRow;
   @Input() hoverBackgroundColor: string = '#eeb3c6';
+  @Input() selectedRow: MatRow;
   @Output() rowSelected = new EventEmitter<any>();
 
+  private hoveredRow: MatRow;
   private row: MatRow;
 
   @Input() set appRowHighlight(row: MatRow) {
@@ -18,13 +18,15 @@ export class RowHighlightDirective {
 
   @HostBinding('class.pointer') pointer = true;
 
-  // @HostBinding('class.hovered') get isHovered() {
-  //   return this.hoveredRow === this.row;
-  // }
-
-  @HostBinding('style.backgroundColor') get backgroundColor() {
-    return this.hoveredRow === this.row ? this.hoverBackgroundColor : null;
+  // Utiliser la class css 'rowhover'
+  @HostBinding('class.rowhover') get isHovered() {
+    return this.hoveredRow === this.row;
   }
+
+  /** utiliser les style */
+  // @HostBinding('style.backgroundColor') get backgroundColor() {
+  //   return this.hoveredRow === this.row ? this.hoverBackgroundColor : null;
+  // }
 
   @HostBinding('class.selected') get isSelected() {
     return this.selectedRow === this.row;
@@ -44,3 +46,30 @@ export class RowHighlightDirective {
   }
 
 }
+
+/**
+ *  supposons que vous voulez que l'utilisateur de votre directive soit capable de spécifier le nom de la classe CSS
+ *  à appliquer lorsque la souris survole une ligne. Vous pouvez faire ceci :
+ */
+
+/*
+@Directive({
+  selector: '[appRowHighlight]'
+})
+export class RowHighlightDirective {
+
+  @Input() hoveredClass: string;
+
+  // Reste du code...
+
+  @HostBinding('class') get className() {
+    return this.hoveredRow === this.row ? this.hoveredClass : null;
+  }
+}
+
+
+<tr appRowHighlight="row" [hoveredClass]="'rowhover'">
+  <!-- Contenu de la ligne de tableau -->
+</tr>
+
+*/

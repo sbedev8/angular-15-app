@@ -69,8 +69,8 @@
           </ng-container>
 
 
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [appRowHighlight]="row" [hoveredRow]="hoveredRow"
-            [selectedRow]="selectedRow" [hoverBackgroundColor]="'#ccb0b9'" (rowSelected)="onRowSelected($event)" >
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [appRowHighlight]="row"
+            [selectedRow]="selectedRow"  (rowSelected)="onRowSelected($event)" >
           </tr>
 
         </table>
