@@ -47,10 +47,12 @@
 
 .mat-header-cell,
 .mat-cell {
+  white-space: nowrap;
   word-wrap: normal;
   overflow: scroll;
   text-overflow: ellipsis;
 }
+
 
 // .mat-expansion-panel-header.mat-expanded {
 //   height: 20px;
@@ -67,9 +69,7 @@
 
   }
 
-  .mat-expansion-panel {
-    margin: 0 ;
-  }
+
 }
 
 // .header-id,

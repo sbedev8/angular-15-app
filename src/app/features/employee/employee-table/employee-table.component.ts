@@ -23,6 +23,8 @@ export class EmployeeTableComponent implements OnInit, AfterViewInit {
   @Input() displayedColumns: string[];
   @Input() employees: Employee[];
 
+  employeesSales2 = "assets/data.json"
+
   employeesSales = [
     { id: 1, firstName: 'John', lastName: 'Doe', email: 'jdoe@example.com' },
     {
@@ -144,7 +146,7 @@ export class EmployeeTableComponent implements OnInit, AfterViewInit {
 
     this.sections.unshift(sec);
 
-    console.log(this.sections);
+    console.log(this.employeesSales2);
   }
 
   selectedRow: MatRow;
